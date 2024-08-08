@@ -1,0 +1,168 @@
+/* Popup stili */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.sign-in-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #eeeeee;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 467px;
+  width: 391px;
+}
+.popup-header {
+  background-color: #2210ee;
+  height: 83px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+h2 {
+  font-weight: 500;
+}
+
+.sign-in-popup.show {
+  display: block !important; /* Popup görünür hale gelir */
+}
+.sign-up-popup.show {
+  display: block !important; /* Popup görünür hale gelir */
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none; /* Başlangıçta gizli */
+}
+
+.popup-overlay.show {
+  display: block; /* Overlay görünür hale gelir */
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: red;
+  font-size: 24px;
+}
+
+.popup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #2210ee;
+  margin-top: 43px;
+  gap: 19px;
+}
+
+.popup-form .input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.popup-form .input-wrapper {
+  border-radius: 8px;
+  border: 1px solid #2210ee;
+  font-size: 16px;
+  padding: 12px;
+  height: 40px;
+  width: 240px;
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+}
+
+.popup-form .select-wrapper {
+  border-radius: 8px;
+  border: 1px solid #2210ee;
+  font-size: 16px;
+  height: 40px;
+  width: 240px;
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.popup-form .input-wrapper input {
+  border: none !important;
+  outline: none;
+  height: auto;
+  width: 200px;
+  color: #333;
+}
+.popup-form .input-wrapper input::placeholder {
+  color: #333;
+}
+
+.popup-form .input-wrapper .custom-select {
+  width: 240px;
+  height: 100%;
+}
+.popup-form .select-wrapper .custom-select select {
+  width: 240px;
+  padding: 0px 12px;
+  height: 40px;
+  outline: none;
+  border: none;
+  background-color: #fff;
+  font-size: 16px;
+  color: #333;
+}
+.custom-select-option {
+  padding: 8px;
+  border-bottom: 1px solid #2210ee; /* Seçenekler arasına mavi çizgi ekler */
+}
+
+.custom-select-option:last-child {
+  border-bottom: none; /* Son seçenek için çizgi yok */
+}
+
+.custom-select select:focus {
+  outline: none; /* Odaklandığında varsayılan outline'ı kaldırır */
+}
+.show-hide-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.form-button-container {
+  margin-top: 30px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.popup-button {
+  width: 180px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.button-container-label {
+  color: #333;
+}

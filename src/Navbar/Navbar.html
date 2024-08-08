@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Navbar.css" />
+</head>
+<body>
+     <div class="navbar-container" id="navbar-container">
+      <div class="navbar-left">
+        <a class="navbar-logo" href="/home">Stay Healthy</a>
+      </div>
+      <div class="navbar-center">
+        <li class="navbar-item"><a href="/home">Home</a></li>
+        <li class="navbar-item"><a href="/about">Appointment</a></li>
+        <li class="navbar-item"><a href="/services">Health Blog</a></li>
+        <li class="navbar-item"><a href="/contact">Reviews</a></li>
+      </div>
+      <div class="navbar-right">
+        <button
+          class="secondary-button navbar-button"
+          onclick=" togglePopup('sign-in');"
+        >
+          Sign in
+        </button>
+        <button
+          class="primary-button navbar-button"
+          onclick="togglePopup('sign-up');"
+        >
+          Sign Up
+        </button>
+        <!-- ID ekledik -->
+      </div>
+    </div>
+</body>
+</html>

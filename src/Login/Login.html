@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="./Login.css" />
+        <link rel="stylesheet" href="../Landing_Page/LandingPage.css" />
+
+
+</head>
+<body>
+    <div id="sign-in-popup" class="sign-in-popup">
+          <div class="popup-header">
+            <h2 class="popup-header-title">Welcome Back</h2>
+          </div>
+
+          <form class="popup-form">
+            <div class="input-container">
+              <label for="email">E-mail</label>
+              <div class="input-wrapper">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="example@example.com"
+                  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                  required
+                />
+                <div class="check-icon"></div>
+              </div>
+            </div>
+
+            <div class="input-container">
+              <label>Password</label>
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="***********"
+                  required
+                />
+                <div class="show-hide-icon" onclick="showHidePassword()">s</div>
+              </div>
+            </div>
+
+            <div class="form-button-container">
+              <button class="primary-button popup-button" type="submit">
+                Submit
+              </button>
+              <label class="button-container-label"
+                >Don't have an account?</label
+              >
+              <button
+                class="teriary-button popup-button"
+                onclick="togglePopup('sign-up');"
+              >
+                Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
+</body>
+</html>
