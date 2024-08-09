@@ -10,10 +10,9 @@
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  position: absolute;
 }
-.navbar-container a{
-    text-decoration: none;
+.navbar-container a {
+  text-decoration: none;
 }
 .navbar-center {
   display: flex;
@@ -49,12 +48,12 @@
 }
 
 .navbar-item a:hover {
-    color: #2210ee;
-  }
-  
-  .navbar-item.active a {
-    color: #2210ee;
-  }
+  color: #2210ee;
+}
+
+.navbar-item.active a {
+  color: #2210ee;
+}
 
 .navbar-button {
   height: 40px;
@@ -97,6 +96,6 @@ button {
 }
 
 .teriary-button {
-    border: none;
-    color: #2210ee;
+  border: none;
+  color: #2210ee;
 }

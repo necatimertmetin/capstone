@@ -1,0 +1,35 @@
+.card-container {
+  width: 920px;
+  height: 590px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: #eee;
+  border-radius: 20px;
+  border: 3px solid #2210ee;
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+.card {
+  background-color: #fff;
+  border: 2px solid #2210ee;
+  color: #2210ee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container::-webkit-scrollbar {
+  width: 20px; /* Kaydırıcı genişliği */
+  border: 2px solid #2210ee;
+  border-radius: 20px; /* Köşeleri yuvarlat */
+}
+
+.card-container::-webkit-scrollbar-thumb {
+  background-color: #2210ee; /* Kaydırıcı rengi */
+  border-radius: 20px; /* Köşeleri yuvarlat */
+  border: 2px solid #2210ee;
+ 
+}
+

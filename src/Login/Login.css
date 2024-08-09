@@ -35,12 +35,6 @@ h2 {
   font-weight: 500;
 }
 
-.sign-in-popup.show {
-  display: block !important; /* Popup görünür hale gelir */
-}
-.sign-up-popup.show {
-  display: block !important; /* Popup görünür hale gelir */
-}
 
 .popup-overlay {
   position: fixed;
@@ -50,12 +44,9 @@ h2 {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  display: none; /* Başlangıçta gizli */
 }
 
-.popup-overlay.show {
-  display: block; /* Overlay görünür hale gelir */
-}
+
 
 .close-btn {
   position: absolute;
