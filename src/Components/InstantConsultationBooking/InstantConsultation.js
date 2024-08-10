@@ -61,6 +61,21 @@ const InstantConsultation = () => {
   }, [searchParams]);
 
   const [hideDoctors, setHideDoctors] = useState(false);
+
+  const handleSubmit = (data) => {
+    // Retrieve existing appointments from localStorage
+    const existingAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    
+    // Add the new data to the array
+    existingAppointments.push(data);
+    
+    // Save the updated array back to localStorage
+    localStorage.setItem('appointments', JSON.stringify(existingAppointments));
+    
+    console.log(data);
+    window.location.reload();
+  };
+  
   return (
     <center>
       <div className="searchpage-container">
@@ -71,7 +86,11 @@ const InstantConsultation = () => {
         />
         <div className="search-results-container">
           {!hideDoctors && isSearched ? (
-            <CardContainer cardData={filteredDoctors} cardType="Appointment" />
+            <CardContainer
+              cardData={filteredDoctors}
+              cardType="Appointment"
+              onSubmit={handleSubmit}
+            />
           ) : (
             ""
           )}

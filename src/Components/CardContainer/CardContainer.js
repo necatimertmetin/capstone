@@ -2,7 +2,7 @@ import React from "react";
 import "./CardContainer.css";
 import Card from "../Card/Card";
 
-const CardContainer = ({ cardData, cardType, onSelect }) => {
+const CardContainer = ({ cardData, cardType, onSelect, onSubmit }) => {
 
   return (
     <div className="card-container">
@@ -14,6 +14,7 @@ const CardContainer = ({ cardData, cardType, onSelect }) => {
             data={card}
             cardType={cardType}
             onSelect={onSelect}
+            onSubmit={onSubmit}
           />
         ))
       ) : (

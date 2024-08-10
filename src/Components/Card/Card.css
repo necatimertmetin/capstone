@@ -40,3 +40,14 @@
   width: 100px;
 
 }
+.negative-button{
+  background-color: #d10000;
+  color: #fff;
+  border: 2px solid transparent;
+  text-wrap: nowrap;
+
+}
+.card-button{
+  font-size: 12px;
+  font-weight: 500;
+}

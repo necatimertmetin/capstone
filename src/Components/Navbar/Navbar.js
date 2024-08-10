@@ -23,7 +23,7 @@ const NavbarForm = () => {
         <NavLink to="/home" className="navbar-item" activeClassName="active">
           Home
         </NavLink>
-        <NavLink to="/appointment" className="navbar-item" activeClassName="active">
+        <NavLink to="/instant-consultation" className="navbar-item" activeClassName="active">
           Appointment
         </NavLink>
         <NavLink

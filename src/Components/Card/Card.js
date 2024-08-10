@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Card.css";
 import avatarIcon from "../assets/media/Generic avatar.png";
 import brainImg from "../assets/media/brain.png";
@@ -83,19 +83,34 @@ const DoctorCard = ({ name, speciality, review }) => {
 
 const handleSubmit = (e) => {
   console.log(e);
-}
+};
 
 // AppointmentCard bileşenini parametrelerle güncelleyelim
-const AppointmentCard = ({ data }) => {
+const AppointmentCard = ({ data, onSubmit }) => {
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const [isBooked, setIsBooked] = useState(false);
 
-  const showAppointment = () => {
+
+  // Check localStorage to see if the doctor's name is already booked
+  useEffect(() => {
+    const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+    const isDoctorBooked = appointments.some(
+      (appointment) => appointment.doctorName === data.name
+    );
+    setIsBooked(isDoctorBooked);
+  }, [data.name]);
+
+  // Show appointment popup with specific mode (book or cancel)
+  const showAppointment = (mode) => {
     setPopupVisible(true);
+    setPopupMode(mode); // Set mode for popup
   };
 
   const hideAppointment = () => {
     setPopupVisible(false);
   };
+
+  const [popupMode, setPopupMode] = useState("book");
 
   return (
     <div className="card doctor-card">
@@ -103,15 +118,35 @@ const AppointmentCard = ({ data }) => {
       <h3>{data.name}</h3>
       <p>{data.speciality}</p>
       <p>{data.ratings}</p>
-      <button
-        className="button card-button primary-button"
-        onClick={showAppointment}
-      >
-        Book Appointment
-      </button>
+      {!isBooked ? (
+        <button
+          className="button card-button primary-button"
+          onClick={() => showAppointment("book")}
+        >
+          Book Appointment
+        </button>
+      ) : (
+        <button
+          className="button card-button negative-button"
+          onClick={() => showAppointment("cancel")}
+        >
+          Cancel Appointment
+        </button>
+      )}
       {isPopupVisible && (
-        <PopupWrapper onClose={() => {setPopupVisible(false)}}>
-          <AppointmentPopup onClose={() => {setPopupVisible(false)}} data={data} onSubmit={handleSubmit}/>
+        <PopupWrapper
+          onClose={() => {
+            setPopupVisible(false);
+          }}
+        >
+          <AppointmentPopup
+            onClose={() => {
+              setPopupVisible(false);
+            }}
+            data={data}
+            onSubmit={onSubmit}
+            mode={popupMode} // Pass mode to the popup
+          />
         </PopupWrapper>
       )}
     </div>
@@ -119,11 +154,11 @@ const AppointmentCard = ({ data }) => {
 };
 
 // Card bileşenini güncelleyip parametreleri ile çalışmasını sağlayalım
-const Card = ({ type, data, cardType, onSelect }) => {
+const Card = ({ type, data, cardType, onSelect, onSubmit }) => {
   return (
     <div>
       {cardType === "Appointment" ? (
-        <AppointmentCard data={data} />
+        <AppointmentCard data={data} onSubmit={onSubmit} />
       ) : cardType === "doctor" ? (
         <DoctorCard
           name={data?.name}

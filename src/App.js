@@ -25,7 +25,7 @@ function App() {
             path="/instant-consultation"
             element={<InstantConsultation />}
           />
-          <Route exact path="/Appointment" element={<Appointment />} />
+          <Route exact path="/instant-consultation" element={<Appointment />} />
           <Route exact path="/reviews" element={<ReviewForm />} />
         </Routes>
       </VerticalWrapper>

@@ -14,11 +14,11 @@ const initSpeciality = [
   "Ayurveda",
 ];
 
-const FindDoctorSearchIC = ({setHideDoctors, hideDoctors}) => {
+const FindDoctorSearchIC = ({ setHideDoctors, hideDoctors }) => {
   const [doctorResultHidden, setDoctorResultHidden] = useState(true);
   const [searchDoctor, setSearchDoctor] = useState("");
   const [specialities, setSpecialities] = useState(initSpeciality);
-  
+
   const navigate = useNavigate();
   const handleDoctorSelect = (speciality) => {
     console.log(speciality);
@@ -47,7 +47,10 @@ const FindDoctorSearchIC = ({setHideDoctors, hideDoctors}) => {
                 type="text"
                 className="search-doctor-input-box"
                 placeholder="Search doctors, clinics, hospitals, etc."
-                onFocus={() => {setDoctorResultHidden(false); setHideDoctors(true)}}
+                onFocus={() => {
+                  setDoctorResultHidden(false);
+                  setHideDoctors(true);
+                }}
                 value={searchDoctor}
                 onChange={(e) => setSearchDoctor(e.target.value)}
               />
@@ -65,8 +68,14 @@ const FindDoctorSearchIC = ({setHideDoctors, hideDoctors}) => {
               className="search-doctor-input-results"
               hidden={doctorResultHidden}
             >
-              <CardContainer cardData={specialities} cardType={"speciality"} onSelect={(e) => {setDoctorResultHidden(true); handleDoctorSelect(e)}} />
-              
+              <CardContainer
+                cardData={specialities}
+                cardType={"speciality"}
+                onSelect={(e) => {
+                  setDoctorResultHidden(true);
+                  handleDoctorSelect(e);
+                }}
+              />
             </div>
           </div>
         </div>

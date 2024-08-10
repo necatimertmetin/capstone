@@ -1,57 +1,37 @@
-// Following code has been commented with appropriate comments for your reference.
 import React, { useEffect, useState } from 'react';
+import './Notification.css';
 
 // Function component Notification to display user notifications
-const Notification = ({ children }) => {
-  // State variables to manage user authentication, username, doctor data, and appointment data
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
-  const [doctorData, setDoctorData] = useState(null);
-  const [appointmentData, setAppointmentData] = useState(null);
+const Notification = () => {
+  // State to hold appointments data
+  const [appointments, setAppointments] = useState([]);
 
-  // useEffect hook to perform side effects in the component
+  // useEffect hook to load appointments from localStorage on component mount
   useEffect(() => {
-    // Retrieve stored username, doctor data, and appointment data from sessionStorage and localStorage
-    const storedUsername = sessionStorage.getItem('email');
-    const storedDoctorData = JSON.parse(localStorage.getItem('doctorData'));
-    const storedAppointmentData = JSON.parse(localStorage.getItem(storedDoctorData?.name));
+    // Retrieve existing appointments from localStorage
+    const storedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    // Update state with retrieved appointments
+    setAppointments(storedAppointments);
+  }, []); // Empty dependency array ensures this runs only once on mount
 
-    // Set isLoggedIn state to true and update username if storedUsername exists
-    if (storedUsername) {
-      setIsLoggedIn(true);
-      setUsername(storedUsername);
-    }
-
-    // Set doctorData state if storedDoctorData exists
-    if (storedDoctorData) {
-      setDoctorData(storedDoctorData);
-    }
-
-    // Set appointmentData state if storedAppointmentData exists
-    if (storedAppointmentData) {
-      setAppointmentData(storedAppointmentData);
-    }
-  }, []); // Empty dependency array ensures useEffect runs only once after initial render
+  // Return null if there are no appointments to display
+  if (appointments.length === 0) {
+    return null;
+  }
 
   return (
-    <div>
-
-      {children}
-      {/* Display appointment details if user is logged in and appointmentData is available */}
-      {isLoggedIn && appointmentData && (
-        <>
-          <div className="appointment-card">
-            <div className="appointment-card__content">
-              {/* Display title for appointment details */}
-              <h3 className="appointment-card__title">Appointment Details</h3>
-              <p className="appointment-card__message">
-                {/* Display doctor's name from doctorData */}
-                <strong>Doctor:</strong> {doctorData?.name}
-              </p>
-            </div>
+    <div className='notification-container'>
+      <div>
+        {appointments.map((appointment, index) => (
+          <div key={index}>
+            <strong>Doctor:</strong> {appointment.doctorName} <br />
+            <strong>Speciality:</strong> {appointment.speciality} <br />
+            <strong>Name:</strong> {appointment.name} <br />
+            <strong>Phone:</strong> {appointment.phone} <br />
+            <strong>Date of Appointment:</strong> {appointment.datetime} <br />
           </div>
-        </>
-      )}
+        ))}
+      </div>
     </div>
   );
 };
