@@ -1,69 +1,17 @@
 import React from "react";
 import "./CardContainer.css";
 import Card from "../Card/Card";
-const CardContainer = () => {
+
+const CardContainer = ({ cardData }) => {
   return (
     <div className="card-container">
-      <Card
-        type="doctor"
-        data={{
-          name: "Denis Raj",
-          speciality: "Dentist",
-          review: "Excellent service!",
-        }}
-      />
-
-      <Card
-        type="doctor"
-        data={{
-          name: "Denis Raj",
-          speciality: "Dentist",
-        }}
-      />
-      <Card
-        type="doctor"
-        data={{
-          name: "Denis Raj",
-          speciality: "Dentist",
-        }}
-      />
-      <Card
-        type="doctor"
-        data={{
-          name: "Denis Raj",
-          speciality: "Dentist",
-        }}
-      />
-       <Card
-        type="doctor"
-        data={{
-          name: "Denis Raj",
-          speciality: "Dentist",
-          review: "Excellent service!",
-        }}
-      />
-
-      <Card
-        type="doctor"
-        data={{
-          name: "Denis Raj",
-          speciality: "Dentist",
-        }}
-      />
-      <Card
-        type="doctor"
-        data={{
-          name: "Denis Raj",
-          speciality: "Dentist",
-        }}
-      />
-      <Card
-        type="doctor"
-        data={{
-          name: "Denis Raj",
-          speciality: "Dentist",
-        }}
-      />
+      {cardData && cardData.map((card, index) => (
+        <Card
+          key={index}
+          type={card.type}
+          data={card.data}
+        />
+      ))}
     </div>
   );
 };

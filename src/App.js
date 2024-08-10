@@ -10,6 +10,7 @@ import {
 import ReviewForm from "./Components/ReviewForm/ReviewForm.js";
 import NavbarForm from "./Components/Navbar/Navbar.js";
 import VerticalWrapper from "./Components/wrapper/VerticalWrapper.js";
+import Appointment from "./Components/Appointment/Appointment.js";
 function App() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
         <NavbarForm />
 
         <Routes>
+          <Route exact path="/Appointment" element={<Appointment />} />
           <Route exact path="/reviews" element={<ReviewForm />} />
         </Routes>
       </VerticalWrapper>
