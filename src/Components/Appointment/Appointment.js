@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CardContainer from "../CardContainer/CardContainer";
 import Search from "../Search/Search";
+import Notification from "../Notification/Notification";
 
 const Appointment = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -66,6 +67,7 @@ const Appointment = () => {
   return (
     <div className="dashboard-container">
       <div className="dashboard-title">Find a doctor at your own ease</div>
+     
       <Search value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
       <CardContainer cardData={filteredCardData} />
     </div>
