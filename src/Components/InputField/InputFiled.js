@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const InputField = ({
   type = 'text',
@@ -13,6 +13,14 @@ const InputField = ({
   isCorrect,
   label
 }) => {
+  // State to manage password visibility
+  const [isPasswordVisible, setIsPasswordVisible] = useState(type !== 'password');
+
+  // Toggle password visibility
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   // Determine the input class based on isCorrect value
   let inputClass = 'input-wrapper';
   if (isCorrect === false) {
@@ -23,10 +31,10 @@ const InputField = ({
 
   return (
     <div className="input-container">
-        <label>{label}</label>
+      <label htmlFor={id}>{label}</label>
       <div className={inputClass}>
         <input
-          type={type}
+          type={isPasswordVisible ? 'text' : type}
           id={id}
           name={name}
           value={value}
@@ -37,7 +45,9 @@ const InputField = ({
           onBlur={onBlur}
         />
         {type === 'password' && (
-          <div className="show-hide-icon" onClick={() => alert('Show/Hide Password')}>s</div>
+          <div className="show-hide-icon" onClick={togglePasswordVisibility}>
+            {isPasswordVisible ? 'H' : 'S'}
+          </div>
         )}
         {/* Display an error or success icon based on isCorrect */}
         {isCorrect === false && <div className="error-icon">!</div>}

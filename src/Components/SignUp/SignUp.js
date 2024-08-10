@@ -3,7 +3,7 @@ import InputField from "../InputField/InputFiled";
 import "./SignUp.css";
 import "../Login/Login.css";
 
-const SignUp = ({handleLogin}) => {
+const SignUp = ({ handleLogin }) => {
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -35,8 +35,6 @@ const SignUp = ({handleLogin}) => {
       isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
     } else if (name === "phone") {
       isValid = /^\+\d{1,3} \d{3} \d{3} \d{4}$/.test(value);
-    } else if (name === "password") {
-      isValid = value.length >= 8;
     }
 
     setFormErrors({
@@ -45,13 +43,59 @@ const SignUp = ({handleLogin}) => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+  
+    // Check if all fields are valid
+    const hasErrors = Object.keys(formErrors).some((key) => formErrors[key] !== true);
+  
+    if (!hasErrors) {
+      // Retrieve existing users from localStorage or initialize an empty array
+      const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+  
+      // Add new user data to the existing users array
+      const newUser = { ...formData };
+      existingUsers.push(newUser);
+  
+      // Save updated users array to localStorage
+      localStorage.setItem("users", JSON.stringify(existingUsers));
+  
+      // Optionally, reset form data
+      setFormData({
+        email: "",
+        name: "",
+        phone: "",
+        password: "",
+      });
+  
+      // Optionally, redirect or provide feedback
+      alert("Sign up successful!");
+  
+      // Handle login redirection
+      handleLogin();
+    } else {
+      // Prepare error messages
+      let errorMessage = "";
+  
+      if (formErrors.email === false) errorMessage += "- Invalid email address.\n";
+      if (formErrors.name === false) errorMessage += "- Name is required.\n";
+      if (formErrors.phone === false) errorMessage += "- Invalid phone number.\n";
+      if (formErrors.password === false) errorMessage += "- Password must be at least 8 characters long.\n";
+  
+      // Show all errors in a single alert
+      alert(errorMessage.trim());
+    }
+  };
+  
+  
+
   return (
     <div id="sign-up-popup" className="sign-up-popup">
       <div className="popup-header">
         <h2 className="popup-header-title">Welcome</h2>
       </div>
 
-      <form className="popup-form">
+      <form className="popup-form" onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Role</label>
           <div className="select-wrapper">

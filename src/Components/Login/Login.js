@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InputField from "../InputField/InputFiled";
 import "./Login.css";
 
-const Login = ({handleSignUp}) => {
+const Login = ({ handleSignUp, onClose }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,7 +25,7 @@ const Login = ({handleSignUp}) => {
     const { name, value } = e.target;
     let isValid = true;
 
-    // Basit doğrulama örneği
+    // Basic validation example
     if (name === "email") {
       isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
     } else if (name === "password") {
@@ -40,7 +40,24 @@ const Login = ({handleSignUp}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Formu gönderme işlemleri burada yapılabilir
+    
+    // Retrieve users from localStorage
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    
+    // Check if there is a matching user
+    const user = storedUsers.find(
+      (user) => user.email === formData.email && user.password === formData.password
+    );
+
+    if (user) {
+      // If user matches, save to sessionStorage
+      sessionStorage.setItem("user", JSON.stringify(user));
+      alert("Login successful!");
+      onClose();
+    } else {
+      // If no match, show error message
+      alert("Invalid email or password. Please try again.");
+    }
   };
 
   return (
@@ -86,7 +103,7 @@ const Login = ({handleSignUp}) => {
           </label>
           <button
             className="teriary-button popup-button button"
-            onClick={() => handleSignUp()} // Bu işlevi değiştirebilirsiniz
+            onClick={() => handleSignUp()} // This function handles Sign Up redirection
           >
             Sign Up
           </button>
