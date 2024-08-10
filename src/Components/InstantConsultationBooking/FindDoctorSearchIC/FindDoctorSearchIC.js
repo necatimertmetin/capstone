@@ -30,8 +30,7 @@ const FindDoctorSearchIC = ({setHideDoctors, hideDoctors}) => {
   return (
     <div className="finddoctor">
       <center>
-        <h1>Find a doctor and Consult instantly</h1>
-       
+        <div className="dashboard-title">Find a doctor at your own ease</div>
         <div
           className="home-search-container"
           style={{
