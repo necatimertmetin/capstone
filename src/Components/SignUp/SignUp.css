@@ -66,11 +66,7 @@
     gap: 19px;
   }
   
-  .popup-form .input-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+
   .popup-form .input-wrapper {
     border-radius: 8px;
     border: 1px solid #2210ee;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Card.css";
 import avatarIcon from "../assets/media/Generic avatar.png";
 import brainImg from "../assets/media/brain.png";
@@ -17,30 +17,48 @@ import stomachImg from "../assets/media/stomach.png";
 import thyroidImg from "../assets/media/thyroid.png";
 import toothImg from "../assets/media/tooth.png";
 import uterusImg from "../assets/media/uterus.png";
+import teethImg from "../assets/media/tooth.png";
+import esophagusImg from "../assets/media/esophagus.png";
+import medicineImg from "../assets/media/medicine.png";
+import AppointmentPopup from "../Popup/AppointmentPopup/AppointmentPopup";
+import PopupWrapper from "../wrapper/PopupWrapper";
 
 // SpecialtyCard bileşenini güncelleyip parametreleri ekleyelim
-const SpecialtyCard = ({ name, description, otherDetails }) => {
+const SpecialtyCard = ({ name, description, otherDetails, onSelect }) => {
   // Specialty adlarını ve karşılık gelen resimleri içeren bir eşleme nesnesi
   const specialtyImages = {
     cardiology: heartImg,
     neurology: brainImg,
-    opthalmology: eyeImg, // Örnek, skinImg'i tanımlamanız gerekiyor
+    ophthalmology: eyeImg,
     orthopedics: jointImg,
     otology: earImg,
     pulmonology: lungsImg,
     urology: kidneysImg,
     endocrinology: thyroidImg,
-    gynecology: uterusImg
+    ayurveda: stomachImg,
+    gynecologist: uterusImg,
+    dentist: teethImg,
+    dermatologist: hairImg,
+    ent: esophagusImg,
     // Diğer specialty'ler buraya eklenebilir
   };
 
   // İlgili resim veya varsayılan bir resim döndür
-  const imageSrc = specialtyImages[name.toLowerCase()] || earImg;
+  const imageSrc =
+    specialtyImages[
+      name.includes("(ent)") ? "ent" : name.split("/")[0]?.toLowerCase()
+    ] || medicineImg;
 
   return (
-    <div className="card medical-specialty-card">
+    <div
+      className="card medical-specialty-card"
+      onClick={() => {
+        onSelect(name);
+        console.log(name);
+      }}
+    >
       <img src={imageSrc} alt={name} />
-      <div>{name}</div>
+      <div>{name.includes("(ent)") ? "ent" : name.split("/")[0]}</div>
     </div>
   );
 };
@@ -63,22 +81,57 @@ const DoctorCard = ({ name, speciality, review }) => {
   );
 };
 
+const handleSubmit = (e) => {
+  console.log(e);
+}
+
+// AppointmentCard bileşenini parametrelerle güncelleyelim
+const AppointmentCard = ({ data }) => {
+  const [isPopupVisible, setPopupVisible] = useState(false);
+
+  const showAppointment = () => {
+    setPopupVisible(true);
+  };
+
+  const hideAppointment = () => {
+    setPopupVisible(false);
+  };
+
+  return (
+    <div className="card doctor-card">
+      <img src={avatarIcon} alt="Avatar" />
+      <h3>{data.name}</h3>
+      <p>{data.speciality}</p>
+      <p>{data.ratings}</p>
+      <button
+        className="button card-button primary-button"
+        onClick={showAppointment}
+      >
+        Book Appointment
+      </button>
+      {isPopupVisible && (
+        <PopupWrapper onClose={() => {setPopupVisible(false)}}>
+          <AppointmentPopup onClose={() => {setPopupVisible(false)}} data={data} onSubmit={handleSubmit}/>
+        </PopupWrapper>
+      )}
+    </div>
+  );
+};
+
 // Card bileşenini güncelleyip parametreleri ile çalışmasını sağlayalım
-const Card = ({ type, data }) => {
+const Card = ({ type, data, cardType, onSelect }) => {
   return (
     <div>
-      {type === "doctor" ? (
+      {cardType === "Appointment" ? (
+        <AppointmentCard data={data} />
+      ) : cardType === "doctor" ? (
         <DoctorCard
-          name={data.name}
-          speciality={data.speciality}
-          review={data.review}
+          name={data?.name}
+          speciality={data?.speciality}
+          review={data?.review}
         />
       ) : (
-        <SpecialtyCard
-          name={data.name}
-          description={data.description}
-          otherDetails={data.otherDetails}
-        />
+        <SpecialtyCard onSelect={onSelect} name={data} />
       )}
     </div>
   );

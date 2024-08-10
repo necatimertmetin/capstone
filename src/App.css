@@ -23,6 +23,8 @@
 }
 .secondary-button{
     color: #2210ee;
+    background-color: transparent;
+    border: 2px solid #2210EE;
 }
 
 .navbar-center *{

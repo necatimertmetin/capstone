@@ -12,6 +12,7 @@ import NavbarForm from "./Components/Navbar/Navbar.js";
 import VerticalWrapper from "./Components/wrapper/VerticalWrapper.js";
 import Appointment from "./Components/Appointment/Appointment.js";
 import Notification from "./Components/Notification/Notification.js";
+import InstantConsultation from "./Components/InstantConsultationBooking/InstantConsultation.js";
 function App() {
   return (
     <Router>
@@ -20,6 +21,10 @@ function App() {
         <Notification />
 
         <Routes>
+          <Route
+            path="/instant-consultation"
+            element={<InstantConsultation />}
+          />
           <Route exact path="/Appointment" element={<Appointment />} />
           <Route exact path="/reviews" element={<ReviewForm />} />
         </Routes>

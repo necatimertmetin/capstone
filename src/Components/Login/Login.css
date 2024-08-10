@@ -78,6 +78,7 @@
   .popup-form .input-container {
     display: flex;
     flex-direction: column;
+    align-items: start;
     gap: 8px;
   }
   .popup-form .input-wrapper {

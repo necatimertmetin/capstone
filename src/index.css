@@ -27,11 +27,16 @@ ul, li{
 .popup-wrapper{
   position: fixed;
   left: 0;
-  height: 0;
+  top: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(217, 217, 217, 0.6);
   z-index: 100;
+}
+.popup-content{
+ background-color: transparent !important;
+ border: none !important;
+
 }
 * {
   margin: 0;

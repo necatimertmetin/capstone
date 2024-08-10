@@ -1,0 +1,32 @@
+.appointment-popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    height: 717px;
+    width: 353px;
+    border-radius: 10px;
+    border: 2px solid #2210EE;
+    padding: 21px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.appointment-popup-button-container{
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+    align-items: center;
+    margin-top: auto;
+}
+.appointment-button{
+    height: 30px;
+    width: 122px;
+    border-radius: 5px;
+    border: 1px solid #2210EE;
+    font-size: 12px;
+}
+.appointment-popup form{
+    height: 100%;
+}
