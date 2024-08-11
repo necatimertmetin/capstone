@@ -55,3 +55,39 @@
   border-radius: 10px;
   border: 2px solid #2210ee;
 }
+
+
+
+.profile-container{
+  position: relative;
+}
+.profile-button{
+  background-color: #fff;
+  color: #333;
+  text-transform: capitalize;
+}
+.profile-dropdown{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 2px solid #2210ee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.profile-dropdown-button{
+  background-color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.profile-dropdown-button:hover{
+  background-color: #eee;
+}
+.profile-dropdown-button:active{
+  background-color: #ddd;
+  color: #2210ee;
+}
+.profile-dropdown-button:nth-child(1){
+border-bottom: 2px solid #2210ee;
+}

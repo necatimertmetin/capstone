@@ -4,12 +4,15 @@ import "./Navbar.css";
 import PopupWrapper from "../wrapper/PopupWrapper";
 import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
+import Profile from "../Profile/Profile";
 
 const NavbarForm = () => {
   const [signIn, setSignIn] = useState(false);
   const [signUp, setSignUp] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [profileDropdown, setProfileDropdown] = useState(false);
+  const [editUser, setEditUser] = useState(false);
 
   useEffect(() => {
     // Fetch user data from sessionStorage
@@ -25,6 +28,13 @@ const NavbarForm = () => {
   const handleClosePopup = () => {
     setSignUp(false);
     setSignIn(false);
+  };
+
+  const handleSignOut = () => {
+    sessionStorage.removeItem("user");
+    setUserData(null);
+    setIsUserLoggedIn(false);
+    window.location.reload(); // Refresh the page to update the state
   };
 
   return (
@@ -48,6 +58,11 @@ const NavbarForm = () => {
               }}
             />
           )}
+        </PopupWrapper>
+      )}
+      {editUser && (
+        <PopupWrapper onClose={() => {setEditUser(false)}}>
+          <Profile />
         </PopupWrapper>
       )}
       <div className="navbar-left">Stay Healthy</div>
@@ -94,9 +109,32 @@ const NavbarForm = () => {
         </div>
       ) : (
         <div className="navbar-right">
-          <button className="secondary-button navbar-button button">
-            {userData.name}
-          </button>
+          <div className="profile-container">
+            <button
+              className="secondary-button profile-button navbar-button button"
+              onClick={() => {
+                setProfileDropdown(!profileDropdown);
+              }}
+            >
+              {userData.name}
+            </button>
+            {profileDropdown && (
+              <div className="profile-dropdown">
+                <button
+                  className="profile-dropdown-button"
+                  onClick={() => setEditUser(true)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="profile-dropdown-button"
+                  onClick={handleSignOut}
+                >
+                  Sign-Out
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

@@ -11,7 +11,8 @@ const InputField = ({
   onChange,
   onBlur,
   isCorrect,
-  label
+  label,
+  readOnly = false
 }) => {
   // State to manage password visibility
   const [isPasswordVisible, setIsPasswordVisible] = useState(type !== 'password');
@@ -43,6 +44,7 @@ const InputField = ({
           required={required}
           onChange={onChange}
           onBlur={onBlur}
+          readOnly={readOnly}
         />
         {type === 'password' && (
           <div className="show-hide-icon" onClick={togglePasswordVisibility}>

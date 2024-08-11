@@ -53,6 +53,7 @@ const Login = ({ handleSignUp, onClose }) => {
       // If user matches, save to sessionStorage
       sessionStorage.setItem("user", JSON.stringify(user));
       alert("Login successful!");
+      window.location.reload();
       onClose();
     } else {
       // If no match, show error message

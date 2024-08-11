@@ -85,12 +85,12 @@ button {
   background-color: #4739e8;
 }
 .secondary-button {
-  background-color: transparent;
+  background-color: #fff;
   border: 2px solid #2210ee;
   color: #2210ee;
 }
 .secondary-button:active {
-  background-color: transparent;
+  background-color: #fff;
   border: 2px solid #4739e8;
   color: #4739e8;
 }
