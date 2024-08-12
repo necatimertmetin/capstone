@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import PopupWrapper from "../wrapper/PopupWrapper";
 import SignUp from "../SignUp/SignUp";
@@ -8,6 +8,7 @@ import Profile from "../Profile/Profile";
 
 const NavbarForm = () => {
   const [signIn, setSignIn] = useState(false);
+  const navigate = useNavigate();
   const [signUp, setSignUp] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
@@ -125,6 +126,12 @@ const NavbarForm = () => {
                   onClick={() => setEditUser(true)}
                 >
                   Edit
+                </button>
+                <button
+                  className="profile-dropdown-button"
+                  onClick={() => navigate('/reports')}
+                >
+                  Reports
                 </button>
                 <button
                   className="profile-dropdown-button"

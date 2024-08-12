@@ -5,12 +5,12 @@ const Profile = () => {
   // State to hold form data and errors
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    phone: "",
     name: "",
   });
   const [formErrors, setFormErrors] = useState({
     email: false,
-    password: false,
+    phone: false,
     name: false,
   });
 
@@ -29,7 +29,7 @@ const Profile = () => {
       users[userIndex] = {
         ...users[userIndex],
         name: formData.name,
-        password: formData.password,
+        phone: formData.phone,
       };
 
       // Save updated users array back to localStorage
@@ -71,7 +71,7 @@ const Profile = () => {
       setFormData({
         email: storedUser.email || "",
         name: storedUser.name || "",
-        password: storedUser.password || "",
+        phone: storedUser.phone || "",
       });
     }
   }, []); // Empty dependency array ensures this runs only once on mount
@@ -112,14 +112,15 @@ const Profile = () => {
         />
 
         <InputField
-          label="Password"
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          placeholder="***********"
+          label="Phone"
+          type="tel"
+          id="phone"
+          name="phone"
+          value={formData.phone}
+          placeholder="+X XXX XXX XXXX"
+          pattern="\+\d{1,3} \d{3} \d{3} \d{4}"
           required
-          isCorrect={!formErrors.password}
+          isCorrect={!formErrors.phone}
           onChange={handleChange}
           onBlur={handleBlur}
         />
@@ -128,7 +129,6 @@ const Profile = () => {
           <button className="primary-button popup-button button" type="submit">
             Submit
           </button>
-         
         </div>
       </form>
     </div>
@@ -136,6 +136,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-
-

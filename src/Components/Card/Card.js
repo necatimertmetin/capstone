@@ -73,10 +73,10 @@ const DoctorCard = ({ name, speciality, review, ratings }) => {
 
     // Append the new feedback to the array
     const updatedFeedbacks = [...storedFeedbacks, feedback];
-    console.log(feedback)
+    console.log(feedback);
     // Save the updated feedbacks array to localStorage
     localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
-    setReviewPopup(false)
+    setReviewPopup(false);
   };
 
   return (
@@ -176,6 +176,48 @@ const AppointmentCard = ({ data, onSubmit }) => {
   );
 };
 
+const ReportCard = ({ data }) => {
+  // Function to handle opening the report in a new tab
+  const handleViewReport = () => {
+    // Open the PDF file in a new tab
+    window.open('/report.pdf', '_blank');
+  };
+
+  // Function to handle downloading the report
+  const handleDownload = () => {
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = '/report.pdf'; // Path to the PDF file in the public folder
+    link.download = 'report.pdf'; // File name to be downloaded
+    link.click(); // Simulate a click on the link
+  };
+
+  return (
+    <div className="card doctor-card">
+      <img src={avatarIcon} alt="Avatar" />
+      <h3>{data.name}</h3>
+      <p>{data.speciality}</p>
+      <p>{data.ratings}</p>
+
+      <button
+        className="button card-button primary-button"
+        onClick={handleViewReport} // Attach click handler for viewing the report
+      >
+        View Report
+      </button>
+
+      <button
+        className="button card-button primary-button"
+        onClick={handleDownload} // Attach click handler for downloading the report
+      >
+        Download Report
+      </button>
+    </div>
+  );
+};
+
+
+
 // Card bileşenini güncelleyip parametreleri ile çalışmasını sağlayalım
 const Card = ({ type, data, cardType, onSelect, onSubmit }) => {
   return (
@@ -189,6 +231,8 @@ const Card = ({ type, data, cardType, onSelect, onSubmit }) => {
           review={data?.review}
           ratings={data?.ratings}
         />
+      ) : cardType === "report" ? (
+        <ReportCard data={data} />
       ) : (
         <SpecialtyCard onSelect={onSelect} name={data} />
       )}
