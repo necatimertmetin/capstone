@@ -22,6 +22,7 @@ import esophagusImg from "../assets/media/esophagus.png";
 import medicineImg from "../assets/media/medicine.png";
 import AppointmentPopup from "../Popup/AppointmentPopup/AppointmentPopup";
 import PopupWrapper from "../wrapper/PopupWrapper";
+import ReviewPopup from "../Popup/ReviewPopup/ReviewPopup";
 
 // SpecialtyCard bileşenini güncelleyip parametreleri ekleyelim
 const SpecialtyCard = ({ name, description, otherDetails, onSelect }) => {
@@ -64,23 +65,46 @@ const SpecialtyCard = ({ name, description, otherDetails, onSelect }) => {
 };
 
 // DoctorCard bileşenini parametrelerle güncelleyelim
-const DoctorCard = ({ name, speciality, review }) => {
+const DoctorCard = ({ name, speciality, review, ratings }) => {
+  const [reviewPopup, setReviewPopup] = useState(false);
+
+  const handleFeedback = (feedback) => {
+    const storedFeedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+
+    // Append the new feedback to the array
+    const updatedFeedbacks = [...storedFeedbacks, feedback];
+    console.log(feedback)
+    // Save the updated feedbacks array to localStorage
+    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
+    setReviewPopup(false)
+  };
+
   return (
     <div className="card doctor-card">
+      {reviewPopup && (
+        <ReviewPopup
+          onCancel={() => setReviewPopup(false)}
+          doctorName={name}
+          onFeedback={(e) => handleFeedback(e)}
+        />
+      )}
       <img src={avatarIcon} alt="Avatar" />
       <h3>Dr. {name}</h3>
       <p>{speciality}</p>
+      <p>{ratings}</p>
       {review ? (
         <p>{review}</p>
       ) : (
-        <button className="button card-button primary-button">
+        <button
+          className="button card-button primary-button"
+          onClick={() => setReviewPopup(true)}
+        >
           Give Review
         </button>
       )}
     </div>
   );
 };
-
 const handleSubmit = (e) => {
   console.log(e);
 };
@@ -89,7 +113,6 @@ const handleSubmit = (e) => {
 const AppointmentCard = ({ data, onSubmit }) => {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [isBooked, setIsBooked] = useState(false);
-
 
   // Check localStorage to see if the doctor's name is already booked
   useEffect(() => {
@@ -159,11 +182,12 @@ const Card = ({ type, data, cardType, onSelect, onSubmit }) => {
     <div>
       {cardType === "Appointment" ? (
         <AppointmentCard data={data} onSubmit={onSubmit} />
-      ) : cardType === "doctor" ? (
+      ) : cardType === "review" ? (
         <DoctorCard
           name={data?.name}
           speciality={data?.speciality}
           review={data?.review}
+          ratings={data?.ratings}
         />
       ) : (
         <SpecialtyCard onSelect={onSelect} name={data} />

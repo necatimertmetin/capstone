@@ -11,7 +11,7 @@
   justify-content: center;
   font-size: 48px;
   margin: 46px 0px 71px 0px;
-  color: #2210EE;
+  color: #2210ee;
   font-weight: 700;
   font-family: "Inter", sans-serif;
 }
@@ -21,14 +21,14 @@
   color: #fff;
   border: 2px solid transparent;
 }
-.secondary-button{
-    color: #2210ee;
-    background-color: transparent;
-    border: 2px solid #2210EE;
+.secondary-button {
+  color: #2210ee;
+  background-color: transparent;
+  border: 2px solid #2210ee;
 }
 
-.navbar-center *{
-    text-decoration: none;
+.navbar-center * {
+  text-decoration: none;
 }
 
 .primary-button:active {
@@ -41,12 +41,63 @@
   color: #4739e8;
 }
 
-
 .teriary-button {
   border: none;
   color: #2210ee;
   font-size: 16px;
   height: 22px;
   width: 128px;
-  
+}
+
+.textarea-container textarea {
+  max-width: 240px;
+  max-height: 80px;
+  outline: none;
+  border: 1px solid #2210ee;
+  border-radius: 10px;
+  padding: 10px;
+}
+.rating-input-star-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+.rating-input-star-container img {
+  height: 24px;
+  cursor: pointer;
+  width: 24px;
+}
+.rating-container {
+  width: 240px;
+}
+.feedback-popup {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 50px;
+  border: 2px solid #2210ee;
+  border-radius: 10px;
+  height: 480px;
+  width: 352px;
+}
+
+.review-popup-button-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 28px
+}
+.review-popup-button-container button{
+  width: 121px !important;
+  height: 30px !important;
+  border: 1px solid #2210ee;
 }
