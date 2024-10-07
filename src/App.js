@@ -19,8 +19,8 @@ function App() {
     <Router>
       <VerticalWrapper>
         <NavbarForm />
+        
         <Notification />
-
         <Routes>
           <Route
             path="/instant-consultation"
